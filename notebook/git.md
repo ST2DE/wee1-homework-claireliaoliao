@@ -1,2 +1,2 @@
-github筆記\n
+github筆記
 $ github init
