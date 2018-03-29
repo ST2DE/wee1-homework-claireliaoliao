@@ -318,3 +318,55 @@ $   git branch branch_1
 $ git branch
 * master
 ```
+
+### git branch -a：查看所有分支
+
+輸入git branch -a可以查看目前我們開的所有branch：
+```
+$   git branch -a 
+branch_a
+master  remotes/origin/master
+```
+
+## 合併分支
+
+git merge
+
+在branch開發了一段時間後，終於完成想要的功能了! 此時可以把branch再融合回去主要的開發幹道上。
+
+首先必須利用checkout回到想要merge過去的主幹道上；比如在此例中我們用git checkout回到master線上之後，再輸入要merge過去的branch名稱git merge。
+
+```
+$   git checkout master
+
+Switched to   branch   'master' 
+
+$   git merge branch_a
+```
+
+由於我們說過master也只是一條branch、和所有branch彼此關係平等，因此要checkout到branch_a、再merge master過來也是可行的，端看開發者需求。
+
+若顯示merge failed時，可能發生了主幹道和分支有同一行程式碼的衝突。
+
+此時就和我們在介紹push/pull時遇到Local端和Remote端程式碼衝突的情形相同，Git會告訴我們哪些地方彼此merge有衝突，待開發者一一解決後再重新merge一次即可成功。
+
+### git stash 指令
+
+很多時候，我們正在開發一個新功能又或是 debug，然後突然有一個功能需要緊急修正，
+
+但你又不想 commit 現在的狀況，因為根本沒意義，事情只做了一半，這時候 stash
+
+這個實用的指令就派上用場了
+
+1.git stash  立馬暫存檔案
+
+2.git stash list 觀看list內的東西
+
+3.git stash pop 使用下列的指令把 stash 取回來，這指令取回後也會刪除 stash
+
+4.git stash apply 希望使用 stash 取回之後，不希望刪除 stash
+
+5.git stash clear 刪除暫存
+
+6.git stash drop stash@{} 丟棄指定的 stash
+
