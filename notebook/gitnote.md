@@ -1,9 +1,9 @@
-Git筆記
+## Git筆記
 
 Reference:
 * Article<br>
-  [Learn-Git-in-30-days](https://github.com/doggy8088/Learn-Git-in-30-days/blob/master/zh-tw/01.md)<br>
-  [Git 簡易使用教學](https://coderwall.com/p/yl1-ug/git--2)<br>
+    [Learn-Git-in-30-days](https://github.com/doggy8088/Learn-Git-in-30-days/blob/master/zh-tw/01.md)<br>
+    [Git 簡易使用教學](https://coderwall.com/p/yl1-ug/git--2)<br>
 
 ## 前言
 
@@ -28,6 +28,32 @@ user.name=claire
 user.email=cla022318@yahoo.com.tw
 ```
 
+## 開始使用 Git
+### 將現有專案CLONE下來
+
+當團隊中有人已開啟了一個在 Git Server 上的 Git Repository，那我們就可以使用 Git clone 來將這個 Repository 抓來自己的 local 端一起進行開發。<br>
+Clone with HTTPS
+
+找到 Git Repository 的位址
+
+在terminal上，使用指令git clone進行 Clone：
+```
+$ git clone git@github.com:fukuball/Hello-World.git
+```
+
+### 建立自己的專案
+
+mac版本中，可以開啟terminal，輸入以下指令建立xxx檔案
+
+```
+$   mkdir week1
+$   cd week1
+$   touch xxx.md
+```
+
 ### git init (建立儲存庫 => git repository)
 
-當 Git 安裝設定好之後，就可以開始使用 Git 版本控制了
+專案設定好之後，就可以開始使用 Git 版本控制了
+```
+$  git init
+```
