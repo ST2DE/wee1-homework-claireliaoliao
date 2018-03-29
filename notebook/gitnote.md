@@ -91,7 +91,7 @@ $   git add xxx.md
 1.若該檔案不在repository內: git rm –cached 檔案名稱
 2.若檔案已經在repository內: git reset HEAD 檔案名稱
 
-##### git rm –cached
+#### git rm –cached
 
 先了解git rm --cached的背後原理 :
 
@@ -107,7 +107,7 @@ $   git add xxx.md
 
 >這解釋了為什麼當檔案不在repository時，必須下git rm --cached
 
-##### gut reset HEAD
+#### gut reset HEAD
 
    先了解git reset HEAD的背後原理：
 
@@ -170,4 +170,151 @@ $   git commit   -m   'Add a about_me.html'
 
 ```batchfile
 git commit --amend
+```
+
+若遺漏了呢？
+
+這時候可以使用如下指令
+
+```batchfile
+git commit -m "init commit"
+git add missing.py
+git commit --amend
+```
+
+如上狀況為當我 git commit -m "init commit" 之後，
+
+我發現我漏掉了 **missing.py** 這個檔案 (commit 前忘記 add 進去 ) ，
+
+這時候就可以使用 git commit --amend 來修改最後一次的 commit 。
+
+
+### git commit -a -m (一次完成add和commit)
+當還有檔案沒有進 stage 就下 commit 指令，那就不能 commit，這時可使用 git commit -a -m 這樣的暴力法來一次加入檔案至 stage 然後進行 commit，大部份人不建議這麼做。
+
+```
+$ git commit -a -m "這次 commit 的適當描述"
+
+```
+
+## History (DIFF, LOG, SHOW)
+
+### git log
+
+我們可以使用 `git log` 的指令查看過去 commit 的紀錄，例如 commit 的版號、作者等等。
+
+```
+$   git log
+
+commit 7d2667e09197461db0a8bc74e8bfc42bf185ccf2
+Author: claire <cla022318@yahoo.com.tw>
+Date:   Fri Mar 23 00:27:57 2018 +0800
+
+```
+
+### git diff
+
+再從Git命令列鍵入`git diff`就可以看到修改過後的紀錄。
+
+```
+$   git diff
+
+```
+
+
+
+## 刪除
+
+### git checkout -- file 可以丟棄工作區的修改
+
+```
+$ git checkout  -- xxx.py
+```
+
+命令 git checkout -- xxx.py 意思就是，把 xxx.py 文件在工作區的修改全部撤銷 ( 丟棄 ) ，
+
+讓這個檔案回到最近一次 git commit 或 git add 時的狀態。
+
+
+### git rm
+
+有兩種況狀，一種是確定要從版本庫中刪除該檔案，那就用命令 git rm 刪掉，並且 git commit：
+
+```
+rm xxx.py
+git rm xxx.py
+git commit -m "remove xxx.py"
+```
+
+另一種況狀是刪錯了，使用 git checkout 可以輕鬆還原檔案:
+
+```
+rm xxx.py
+git checkout -- xxx.py
+```
+
+## 推送程式碼至REMOTE端 (PUSH/PULL)
+
+在Local端寫了這麼久，要將程式碼推到GitHub網站上吧！
+
+### git remote add origin https://github.com/try-git/try_git.git
+To push our local _repo_ to the GitHub server we'll need to add a remote repository.
+
+
+### git push
+
+當已經連結了 Git Server，就可以用 git push 來將 local 端的 commit 更新到 Server 上，請注意有修改的檔案還沒 commit 那就無法使用 git push，所以一定要將所有更新都 commit 之後，才有辦法使用 git push。
+
+```
+$ git push
+```
+
+The name of our remote is `origin` and the default local branch name is `master`. The `-u` tells Git to remember the parameters, so that next time we can simply run `git push` and Git will know what to do.
+
+```
+$ git push -u origin master
+```
+
+
+### git pull
+
+當已經連結了 Git Server，我們就可以使用 git pull 來將遠端更新的 code 抓回來，同樣如果 local 端有任何更新，一定都要 commit 之後才  
+有辦法使用 git pull。
+
+```
+$ git pull
+```
+
+```
+$ git pull origin master
+```
+
+### .gitigore
+
+log 檔及 build 出來的檔案及系統產生的檔案如 .DS_Store 等等，我們並不需要 commit 上去 Repository，所以我們會在 Repository 編寫一個 .gitignore 文字檔來忽略這些檔案。
+
+範例 .gitigore 如下：
+
+```
+.DS_Store
+*.log
+```
+## 使用分支
+
+Git作為分散式版本管理系統的好處是不需仰賴中央單一一條主幹道開發，可根據開發需求、隨時在某一時間點開分支(branch)獨立開發某一項功能，待開發完成後再融合(merge)回去主幹道。
+
+主幹(master)與分支(branch)是稱呼專案的主要版本和分支版本。在Git第一個建立的專案版本會被稱為master版本。
+
+然而實際上master也僅是其中一條branch，所有branch間的關係都是平等的、彼此間無主從關係。一般習慣將穩定版本稱主幹，其餘的變動、開發中版本則都稱作分支。
+
+
+### git branch：開分支
+```
+$   git branch branch_1
+```
+
+### git branch：查看目前分支
+```
+$ git branch
+* master
 ```
