@@ -86,8 +86,23 @@ $   git add xxx.md
 
 #### 如果add或commit之後反悔?
 
-[如何將檔案從stage移除？]（http://oomusou.io/git/remove-stage/）
+[如何將檔案從stage移除？](http://oomusou.io/git/remove-stage/)<br>
 
 1.若該檔案不在repository內: git rm –cached 檔案名稱
 2.若檔案已經在repository內: git reset HEAD 檔案名稱
+
+##### git rm –cached
+
+先了解git rm --cached的背後原理 :
+
+若檔案存在於stage與repository時，會將檔案從repository刪除，並且從stage刪除，但不會刪除working directory的實際檔案，不過由於檔案已經從repository刪除，檔案會從tracked變成untracked。<br>
+若檔案存在於stage，卻不存在於repository，會將檔案從stage刪除，但不會刪除working director的實際檔案，因為repository本來就沒有這個檔案，所以一樣是untracked不變。<br>
+
+回想我們的狀況 :
+
+若該檔案不在repository內 : git rm --cached會幫我們從stage刪除，且檔案本來就是untracked，執行完還是untracked，符合我們的預期。<br>
+
+若檔案已經在repository內 : git rm --cached會幫我們從repository刪除，並且從stage刪除，因為已經從repository刪除檔案，檔案會從tracked變成untracked，這並不是我們預期的。<br>
+
+這解釋了為什麼當檔案不在repository時，必須下git rm --cached
 
