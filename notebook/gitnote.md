@@ -106,3 +106,67 @@ $   git add xxx.md
 
 這解釋了為什麼當檔案不在repository時，必須下git rm --cached
 
+##### gut reset HEAD
+
+先了解git reset HEAD的背後原理：
+
+HEAD為目前最新的commit節點，git reset HEAD表示將檔案還原到目前最新的commit，若沒下任何參數，預設為--mixed：
+
+–soft : repository的檔案會被還原到HEAD，但stage與working directory檔案不變。<br>
+–mixed : repository與stage的檔案都會被還原到HEAD，但working directory的檔案不變。<br>
+–hard : repository、stage與working directory的檔案都會被還原到HEAD。<br>
+
+回想我們的狀況：
+
+若該檔案不在repository內 : git reset HEAD會出現以下錯誤：
+
+```
+fatal: ambiguous argument 'HEAD': unknown revision or path not in the working tree.
+
+Use '--' to separate paths from revisions, like this:
+
+'git <command> \[<revision>...\] -- \[<file>...\]'  
+```
+
+>因為檔案根本還沒進repository，也就是還沒有commit過，哪來的HEAD呢？git馬上給你錯誤訊息，，這並不是我們預期的。
+
+2.  若檔案**已經在**repository內 : `git reset HEAD`會幫我們將repository與stage還原到目前最新commit節點檔案，但working directory的檔案不會被還原，因為stage的檔案已經不是目前的檔案，所以檔案的狀態由原本的`stage`變成`modified`，符合我們的預期。
+
+這解釋了為什麼當檔案**已經在**repository時，必須下`git reset HEAD`。
+
+
+## 提交版本(COMMIT)
+
+### git commit (commit)
+
+stage 狀態的檔案，下一步就是準備提交，一個 commit 在 Git 中就是一個節點，這些 commit 的節點就是未來可以回朔及追蹤的參考。<br>
+當檔案都加入到 stage 了，那就可以使用以下指令來 commit：
+
+```
+$ git commit -m "你要告訴他人的內容"
+```
+
+每個 commit 有個適當的描述是非常重要的，這樣要回朔時會比較容易查找。
+
+```
+$   git commit   -m   'Add a about_me.html'
+
+
+\[master   (root-commit)   0dc97a8\]  Add a about_me.html.
+
+ 1   file changed,   0   insertions(+),   0   deletions(-)
+
+ create mode   100644  about_me.html
+```
+
+### git commit -e
+由於git commit -m僅能輸入一行評論；如果想要比較詳細的評論時，可改為輸入git commit -e就能打開編輯器、撰寫超過一行的評論。
+
+### git commit --amend
+**如何修改最後一次的commit呢 ?**
+
+有時候我們 commit 完之後，才發現自己的 commit 內容手殘打錯了，這時候可以使用如下指令，他會跳出編輯視窗給你編輯你上一次的 commit 內容。
+
+```batchfile
+git commit --amend
+```
