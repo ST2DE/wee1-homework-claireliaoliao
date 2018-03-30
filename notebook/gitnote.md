@@ -74,7 +74,11 @@ $ git status
 nothing to commit, working directory clean
 ```
 
-### 進入暫存區(git add)
+
+
+## 進入暫存區(git add)
+
+
 
 #### git add (stage)
 
@@ -84,12 +88,16 @@ nothing to commit, working directory clean
 $   git add xxx.md
 ```
 
+
+
 #### 如果add或commit之後反悔?
 
 [如何將檔案從stage移除？](http://oomusou.io/git/remove-stage/)<br>
 
 1.若該檔案不在repository內: git rm –cached 檔案名稱
 2.若檔案已經在repository內: git reset HEAD 檔案名稱
+
+
 
 #### git rm –cached
 
@@ -106,6 +114,8 @@ $   git add xxx.md
 2.若檔案已經在repository內 : git rm --cached會幫我們從repository刪除，並且從stage刪除，因為已經從repository刪除檔案，檔案會從tracked變成untracked，這並不是我們預期的。<br>
 
 >這解釋了為什麼當檔案不在repository時，必須下git rm --cached
+
+
 
 #### gut reset HEAD
 
@@ -134,6 +144,8 @@ Use '--' to separate paths from revisions, like this:
 2.  若檔案**已經在**repository內 : `git reset HEAD`會幫我們將repository與stage還原到目前最新commit節點檔案，但working directory的檔案不會被還原，因為stage的檔案已經不是目前的檔案，所以檔案的狀態由原本的`stage`變成`modified`，符合我們的預期。
 
 這解釋了為什麼當檔案**已經在**repository時，必須下`git reset HEAD`。
+
+
 
 
 ## 提交版本(COMMIT)
@@ -197,6 +209,8 @@ $ git commit -a -m "這次 commit 的適當描述"
 
 ```
 
+
+
 ## History (DIFF, LOG, SHOW)
 
 ### git log
@@ -224,6 +238,8 @@ $   git diff
 
 
 ## 刪除
+
+
 
 ### git checkout -- file 可以丟棄工作區的修改
 
@@ -299,6 +315,9 @@ log 檔及 build 出來的檔案及系統產生的檔案如 .DS_Store 等等，�
 .DS_Store
 *.log
 ```
+
+
+
 ## 使用分支
 
 Git作為分散式版本管理系統的好處是不需仰賴中央單一一條主幹道開發，可根據開發需求、隨時在某一時間點開分支(branch)獨立開發某一項功能，待開發完成後再融合(merge)回去主幹道。
