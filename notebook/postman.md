@@ -2,14 +2,14 @@
 
 [Postman - 測試Web Service的工具](https://medium.com/@mikru168/postman-測試web-service的工具-c7726997868a)
 
-**前置作業
+### 前置作業
 
 1.Chrome 商店搜尋 postman 並將該功能加到 chrome<br>
 2. 新增應用程式至 Chrome 的擴充功能<br>
 3. 至擴充功能查看 Postman 是否有被啟用<br>
 4. 從應用程式打開 Postman 並註冊帳號(可以直接使用 Google 的帳號登入即可)<br>
 
-**Postman 工具簡介
+### Postman 工具簡介
 
 1.隱藏或顯示左邊的視窗。
 
