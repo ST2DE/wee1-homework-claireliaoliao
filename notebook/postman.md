@@ -42,6 +42,8 @@
 16.依第15項的設定顯示結果的區塊。
 
 <br>
+## 實作
+
 實作 1 - 使用 Get 的方式發送請求給 Web Service
 
 Web Service 的 URL => http://127.0.0.1:8090/esblab1/
